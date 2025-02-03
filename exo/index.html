@@ -13,6 +13,51 @@
     <div id="tokenResponse"></div>
     <div id="userInfo"></div>
 
+    <hr>
+
+    <h1>Filtre de tableau</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Adresse e-mail</th>
+                <th>Mot de passe</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="email" name="email1" id="email1" value="ouioui@test.test"></td>
+                <td><input type="password" name="password1" id="password1" value="test"></td>
+            </tr>
+            <tr>
+                <td><input type="email" name="email2" id="email2" value="tarte.a.la.tomate@com.com"></td>
+                <td><input type="password" name="password2" id="password2" value="com"></td>
+            </tr>
+            <tr>
+                <td><input type="email" name="email3" id="email3" value="pat.patrouille@fr.fr"></td>
+                <td><input type="password" name="password3" id="password3" value="fr"></td>
+            </tr>
+            <tr>
+                <td><input type="email" name="email4" id="email4" value="j.aime.les.licornes@net.net"></td>
+                <td><input type="password" name="password4" id="password4" value="net"></td>
+            </tr>
+        </tbody>
+    </table>    
+    <label for="filter">Filtre textuel</label>
+    <input type="text" name="filter" id="filter">
+    <button onclick="filter()">Vérifier si les adresse email de mon tableau contiennent le champs de filtre textuel</button>
+    <h2>Tableau filtré</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Adresse e-mail</th>
+                <th>Mot de passe</th>
+            </tr>
+        </thead>
+        <tbody id="filtredArray">
+        </tbody>
+    </table>   
+
     <script src="authentification.js"></script>
+    <script src="arrayFilter.js"></script>
 </body>
 </html>
