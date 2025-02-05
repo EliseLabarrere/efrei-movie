@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios';
-import { MoviesService } from './movies.service';
-import { MoviesController } from './movies.controller';
+import { MoviesService } from './movie.service';
+import { MoviesController } from './movie.controller';
 
 @Module({
   imports: [HttpModule],

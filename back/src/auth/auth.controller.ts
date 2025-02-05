@@ -14,7 +14,7 @@ import { ApiTags, ApiOperation, ApiBody, ApiResponse, ApiBearerAuth } from '@nes
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { Public } from './public.decorator';
-import { UsersService } from '../users/users.service';
+import { UsersService } from '../user/user.service';
 
 @ApiTags('Auth')
 @Controller('auth')

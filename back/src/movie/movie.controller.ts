@@ -1,5 +1,5 @@
 import { Controller, Get, Query, UseGuards } from '@nestjs/common';
-import { MoviesService } from './movies.service';
+import { MoviesService } from './movie.service';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
 import { AuthGuard } from '../auth/auth.guard';
 
