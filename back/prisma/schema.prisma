@@ -14,7 +14,18 @@ generator client {
 }
 
 model User {
-  id       Int    @default(autoincrement()) @id
-  username String @unique
-  password String
+  id            Int       @default(autoincrement()) @id
+  username      String    @unique
+  password      String
+
+  reservations Reservation[]
+}
+
+model Reservation {
+  id         Int      @id @default(autoincrement())
+  idFilm     Int 
+  userId     Int
+  session       DateTime
+
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
