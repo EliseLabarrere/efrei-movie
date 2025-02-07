@@ -1,8 +1,26 @@
-# React + Vite
+# Front-end for Efrei Movie
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the front-end application for the Efrei Movie project, built using React, Vite, Swagger, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Introduction
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is a React application for managing movie data. It uses Vite for build and development, Swagger for API documentation, and Tailwind CSS for styling.
+
+## Installation
+1. Clone the repository:
+    git clone https://github.com/EliseLabarrere/efrei-movie.git
+    cd efrei-movie/front
+
+2. Install the dependencies:
+    npm install
+
+## Running the Application
+
+Start the development server: `npm run dev`     
+
+The application will run on `http://localhost:5173`
+
+
+## Using Tailwind CSS
+
+Tailwind CSS is used for styling the application. You can customize the styles by editing the Tailwind configuration file.
