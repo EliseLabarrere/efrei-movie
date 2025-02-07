@@ -9,18 +9,15 @@ export class MoviesController {
   constructor(private readonly MovieService: MovieService) { }
 
   @Get('now-playing')
-  @ApiBearerAuth()
   @ApiResponse({ status: 201, description: 'Films récupérés avec succès' })
   @ApiResponse({ status: 400, description: 'Échec récupération films' })
   @ApiResponse({ status: 401, description: 'Token manquant ou non-valide' })
   @ApiOperation({ summary: 'Récupérer films à l\'affiche' })
-  @UseGuards(AuthGuard)
   async getNowPlaying() {
     return this.MovieService.requestTMDB('/movie/now_playing', 'GET');
   }
 
   @Get('search-movie')
-  @ApiBearerAuth()
   @ApiQuery({ name: 'query', required: true, description: 'Mot-clé de la recherche' })
   @ApiQuery({ name: 'include_adult', required: false, description: 'Inclu des adultes' })
   @ApiQuery({ name: 'language', required: false, description: 'Langue des résultats (ex: en, fr)' })
@@ -32,7 +29,6 @@ export class MoviesController {
   @ApiResponse({ status: 400, description: 'Échec : aucun film trouvé ou paramètre manquant' })
   @ApiResponse({ status: 401, description: 'Token manquant ou non-valide' })
   @ApiOperation({ summary: 'Recherche film' })
-  @UseGuards(AuthGuard)
   async getSearchMovie(@Query() queryParams: Record<string, string>) {
     const params = new URLSearchParams(queryParams).toString();
 
@@ -41,5 +37,19 @@ export class MoviesController {
     }
 
     return this.MovieService.requestTMDB(`/search/movie?${params}`, 'GET');
+  }
+
+  @Get('movie-details')
+  @ApiBearerAuth()
+  @ApiResponse({ status: 201, description: 'Informations film récuprées avec succès' })
+  @ApiResponse({ status: 400, description: 'Échec reqcupération information film' })
+  @ApiResponse({ status: 401, description: 'Token manquant ou non-valide' })
+  @ApiOperation({ summary: 'Récupérer les information d\'un film' })
+  @UseGuards(AuthGuard)
+  async getMovieDetails(@Query('movie_id') movieId: string) {
+    if (!movieId) {
+      return { message: 'Le paramètre movie_id est requis'};
+    }
+    return this.moviesService.requestTMDB(`/movie/${movieId}`);
   }
 }
