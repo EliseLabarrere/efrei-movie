@@ -14,12 +14,12 @@ import { ApiTags, ApiOperation, ApiBody, ApiResponse, ApiBearerAuth } from '@nes
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { Public } from './public.decorator';
-import { UsersService } from '../user/user.service';
+import { UserService } from '../user/user.service';
 
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-    constructor(private authService: AuthService, private usersService: UsersService) { }
+    constructor(private authService: AuthService, private UserService: UserService) { }
 
     @ApiOperation({ summary: 'Enregistrer nouvel utilisateur' })
     @Public()
@@ -36,12 +36,12 @@ export class AuthController {
     @ApiResponse({ status: 400, description: 'Utilisateur existe déjà' })
     @Post('register')
     async register(@Body() registerDto: { username: string; password: string }) {
-        const existingUser = await this.usersService.findOne(registerDto.username);
+        const existingUser = await this.UserService.findOne(registerDto.username);
         if (existingUser) {
             throw new BadRequestException('Utilisateur existe déjà.');
         }
 
-        const newUser = await this.usersService.create(registerDto.username, registerDto.password);
+        const newUser = await this.UserService.create(registerDto.username, registerDto.password);
         return { message: 'Utilisateur enregistré avec succès', userId: newUser.id };
     }
 

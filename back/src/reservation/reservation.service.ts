@@ -54,7 +54,7 @@ export class ReservationService {
     const reservation = new Reservation();
     reservation.id = data.id;
     reservation.idFilm = data.idFilm;
-    reservation.idUser = data.userId;
+    reservation.userId = data.userId; 
     reservation.session = data.session;
     return reservation;
   }

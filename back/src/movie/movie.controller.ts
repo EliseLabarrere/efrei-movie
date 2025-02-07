@@ -1,12 +1,12 @@
 import { Controller, Get, Query, UseGuards } from '@nestjs/common';
-import { MoviesService } from './movie.service';
+import { MovieService } from './movie.service';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
 import { AuthGuard } from '../auth/auth.guard';
 
 @ApiTags('Movies')
 @Controller('movies')
 export class MoviesController {
-  constructor(private readonly moviesService: MoviesService) { }
+  constructor(private readonly MovieService: MovieService) { }
 
   @Get('now-playing')
   @ApiBearerAuth()
@@ -16,7 +16,7 @@ export class MoviesController {
   @ApiOperation({ summary: 'Récupérer films à l\'affiche' })
   @UseGuards(AuthGuard)
   async getNowPlaying() {
-    return this.moviesService.requestTMDB('/movie/now_playing', 'GET');
+    return this.MovieService.requestTMDB('/movie/now_playing', 'GET');
   }
 
   @Get('search-movie')
@@ -40,6 +40,6 @@ export class MoviesController {
       return { message: 'Le paramètre "query" est obligatoire' };
     }
 
-    return this.moviesService.requestTMDB(`/search/movie?${params}`, 'GET');
+    return this.MovieService.requestTMDB(`/search/movie?${params}`, 'GET');
   }
 }

@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import axios, { Method } from 'axios';
 
 @Injectable()
-export class MoviesService {
+export class MovieService {
   private readonly apiUrl: string;
   private readonly apiKey: string;
 
@@ -27,7 +27,6 @@ export class MoviesService {
       },
       data,
     };
-    console.log("CA FONCTIONNE ?")
     
     try {
       const response = await axios.request(options);

@@ -8,7 +8,7 @@ export class Reservation {
   idFilm: number;
 
   @ApiProperty({ example: 1, description: 'ID de l\'utilisateur' })
-  idUser: number;
+  userId: number;
 
   @ApiProperty({ example: 'changeme', description: 'Date et heure' })
   session: Date;

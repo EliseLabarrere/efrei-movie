@@ -26,11 +26,11 @@ export class ReservationController {
     @ApiOperation({ summary: 'Créer une réservation' })
     @UseGuards(AuthGuard)
     async reserve(@Body() reservation: Record<string, any>, @Req() req) {
-        const userId = req.user.sub
-
-        if (!userId) {
+        if (!req.user || !req.user.sub) { // Vérifie si user et sub existent
             throw new UnauthorizedException('Utilisateur non autorisé');
         }
+        const userId = req.user.sub
+        
         return this.reservationService.create(userId, reservation.dateTime, reservation.idFilm);
     }
 
@@ -43,10 +43,10 @@ export class ReservationController {
     @ApiOperation({ summary: 'Récupérer réservations utilisateur' })
     @UseGuards(AuthGuard)
     async findAll(@Req() req) {
-        const userId = req.user.sub
-        if (!userId) {
+        if (!req.user || !req.user.sub) { // Vérifie si user et sub existent
             throw new UnauthorizedException('Utilisateur non autorisé');
         }
+        const userId = req.user.sub
 
         return this.reservationService.findAll(userId);
     }
@@ -69,10 +69,10 @@ export class ReservationController {
     @ApiOperation({ summary: 'Annuler une réservation' })
     @UseGuards(AuthGuard)
     async delete(@Body() reservation: Record<string, any>, @Req() req) {
-        const userId = req.user.sub
-        if (!userId) {
+        if (!req.user || !req.user.sub) {
             throw new UnauthorizedException('Utilisateur non autorisé');
         }
+        const userId = req.user.sub
 
         return this.reservationService.delete(userId, new Date(reservation.session));
     }
