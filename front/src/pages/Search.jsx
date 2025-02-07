@@ -19,20 +19,15 @@ const Search = () => {
 
     const fetchSearchResults = async () => {
       try {
-        const token = getToken();
-        if (!token) {
-          console.error("Erreur: Aucun token trouvé !");
-          setError("Vous devez être connecté pour voir les résultats.");
-          setLoading(false);
-          return;
-        }
+        // const token = getToken();
+        // if (!token) {
+        //   console.error("Erreur: Aucun token trouvé !");
+        //   setError("Vous devez être connecté pour voir les résultats.");
+        //   setLoading(false);
+        //   return;
+        // }
 
-        const response = await fetch(`${API_BASE_URL}/movies/search-movie?query=${encodeURIComponent(query)}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(`${API_BASE_URL}/movies/search-movie?query=${encodeURIComponent(query)}`);
 
         const data = await response.json();
 
